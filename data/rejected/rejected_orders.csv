@@ -1,0 +1,7 @@
+order_id,order_date,customer_id,country,product,quantity,unit_price,reject_reason
+1004,2026-10-05,C029,Tunisia,Mouse,-2.0,19.9,invalid_quantity
+1008,2026-10-05,,Tunisia,Keyboard,2.0,45.0,missing_customer_id
+1013,,C007,Italy,Desk lamp,4.0,29.0,invalid_date
+1019,2026-10-05,C027,Italy,Keyboard,1.0,4500.0,invalid_unit_price
+1010,2026-10-05,C018,France,Office chair,1.0,449.0,duplicate_order_id
+The revenue of an order is quantity × unit_price.,,,,,,,missing_customer_id
