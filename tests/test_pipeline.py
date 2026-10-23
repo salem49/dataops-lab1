@@ -104,9 +104,16 @@ def test_country_is_normalised():
             {"order_id": 2, "country": "FRANCE "},
         ]
     )
+    
 
     clean, rejected = clean_orders(orders)
 
     assert list(clean["country"]) == ["France", "France"]
     assert len(rejected) == 0
+def test_unknown_country_is_rejected():
+    orders = make_orders([{"order_id": 1, "country": "Spain"}, {"order_id": 2, "country": "Italy"}])
+    clean, rejected = clean_orders(orders)
+    assert list(clean["order_id"]) == [2]
+    assert list(rejected["reject_reason"]) == ["unknown_country"]
+
 
