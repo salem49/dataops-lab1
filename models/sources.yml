@@ -1,0 +1,25 @@
+version: 2
+sources:
+  - name: raw
+    description: Raw files, loaded as-is by load_raw.py
+    tables:
+      - name: orders
+        description: One row per line of the daily orders file, all columns as text
+
+
+
+unit_tests:
+  - name: test_unknown_country_is_rejected
+    description: An order from a country the shop does not sell to is rejected
+    model: int_orders_checked
+    given:
+      - input: ref('stg_orders')
+        rows:
+          - {order_id: 1, order_date: 2026-10-05, customer_id: C001, country: Spain, quantity: 1, unit_price: 10.0, _row_number: 1}
+          - {order_id: 2, order_date: 2026-10-05, customer_id: C002, country: Italy, quantity: 1, unit_price: 10.0, _row_number: 2}
+    expect:
+      rows:
+        - {order_id: 1, reject_reason: unknown_country}
+        - {order_id: 2, reject_reason: null}
+
+

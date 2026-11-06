@@ -1,0 +1,16 @@
+name: dataops_lab1
+version: "1.0.0"
+config-version: 2
+
+profile: dataops_lab1
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"

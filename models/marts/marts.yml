@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: orders_clean
+    description: Orders that passed every quality rule
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        data_tests:
+          - not_null
+      - name: country
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["France", "Germany", "Italy", "Morocco", "Tunisia"]
+
+  - name: revenue_by_country
+    description: Revenue per country, read by the sales director
+    columns:
+      - name: country
+        data_tests:
+          - unique
+
+unit_tests:
+  - name: test_duplicate_order_keeps_the_first
+    model: int_orders_checked
+    given:
+      - input: ref('stg_orders')
+        rows:
+          - {order_id: 1, customer_id: 10, order_date: '2024-01-01', quantity: 2, unit_price: 19.99, country: 'France', status: 'paid', _row_number: 1}
+          - {order_id: 1, customer_id: 10, order_date: '2024-01-01', quantity: 2, unit_price: 19.99, country: 'France', status: 'paid', _row_number: 2}
+    expect:
+      rows:
+        - {_row_number: 1, reject_reason: null}
+        - {_row_number: 2, reject_reason: 'duplicate_order_id'}
+
