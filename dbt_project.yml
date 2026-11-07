@@ -6,7 +6,7 @@ profile: dataops_lab1
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
-test-paths: ["tests"]
+test-paths: ["data_tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 
