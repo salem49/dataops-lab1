@@ -5,8 +5,8 @@ stages:
     deps:
     - path: data/raw
       hash: md5
-      md5: 0555de4a217c0838a8b22908cc76fae3.dir
-      size: 2172
+      md5: 898a2f217775af4bdd77068fd7476fbc.dir
+      size: 2122
       nfiles: 3
     - path: pipeline
       hash: md5
@@ -22,3 +22,34 @@ stages:
       hash: md5
       md5: 21c80d69a8daef5e0bf0f91042d3a603
       size: 93
+  elt:
+    cmd: python load_raw.py data/raw/orders_day.csv && dbt build
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 898a2f217775af4bdd77068fd7476fbc.dir
+      size: 2122
+      nfiles: 3
+    - path: data_tests
+      hash: md5
+      md5: 163e132acc10fc679dd5eba825c34620.dir
+      size: 409
+      nfiles: 2
+    - path: dbt_project.yml
+      hash: md5
+      md5: a4c72d6ceeec2d6e0908eef6f429877d
+      size: 274
+    - path: load_raw.py
+      hash: md5
+      md5: 2b6d9d59a421d40a596477400bcfa47d
+      size: 791
+    - path: models
+      hash: md5
+      md5: 475ff0ec9a83760d13d92f0d1fa75f75.dir
+      size: 4302
+      nfiles: 8
+    outs:
+    - path: warehouse.duckdb
+      hash: md5
+      md5: 0713d3db1486f46fce72611b94cd8f8a
+      size: 536576
