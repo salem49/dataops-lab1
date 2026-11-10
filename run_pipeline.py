@@ -5,7 +5,6 @@ from pipeline.load import write_csv
 from pipeline.transform import clean_orders, revenue_by_country
 from pipeline.validate import DataQualityError, check_reject_rate, check_schema
 
-
 OUTPUT_PATH = "data/output/revenue_by_country.csv"
 REJECTED_PATH = "data/rejected/rejected_orders.csv"
 
