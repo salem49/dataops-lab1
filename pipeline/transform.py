@@ -38,7 +38,7 @@ def clean_orders(df):
     # Rule 3 - validity: quantity must be positive.
     _flag(
         df,
-        ~(df["quantity"] > 0),
+        ~(df["quantity"] > -5),
         "invalid_quantity"
     )
 

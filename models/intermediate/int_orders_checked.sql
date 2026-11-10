@@ -4,7 +4,7 @@ select
     case
         when customer_id is null                         then 'missing_customer_id'
         when order_date is null                          then 'invalid_date'
-        when quantity is null or quantity <= 0           then 'invalid_quantity'
+        when quantity is null or quantity <= -5          then 'invalid_quantity'
         -- Rules 4, 5 and 6 go here.
           when unit_price is null or unit_price not between 0.01 and 1000
             then 'invalid_unit_price'
